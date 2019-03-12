@@ -46,20 +46,23 @@ void loop() {
   int avg = total / Delay;
 
   if (avg < 750) {
-    driveLeftMotor(MIN_MOTOR_SPEED + 20);
+    driveLeftMotor(MAX_MOTOR_SPEED + 20);
     driveRightMotor(0);
     delay(10);
     driveLeftMotor(0);
   }
   else if (avg > 850) {
     driveLeftMotor(0);
-    driveRightMotor(MIN_MOTOR_SPEED + 20);
+    driveRightMotor(MAX_MOTOR_SPEED + 20);
     delay(10);
     driveRightMotor(0);
   }
   else {
-    driveLeftMotor(MIN_MOTOR_SPEED);
-    driveRightMotor(MIN_MOTOR_SPEED);
+    driveLeftMotor(MAX_MOTOR_SPEED);
+    driveRightMotor(MAX_MOTOR_SPEED);
+    delay(10);
+    driveRightMotor(0);
+    driveLeftMotor(0);
   }
   
 
