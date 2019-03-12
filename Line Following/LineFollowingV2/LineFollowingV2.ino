@@ -32,12 +32,28 @@ void loop() {
   int valueLeft = analogRead(LINE_FOLLOWING_A);
   int valueCenter = analogRead(LINE_FOLLOWING_B);
   int valueRight = analogRead(LINE_FOLLOWING_C);
-
+  
+  int currentLeftSpeed = MIN_MOTOR_SPEED;
+  int currentRightSpeed = MIN_MOTOR_SPEED + MOTOR_SPEED_OFFSET;
+  
   //If Left has lost the line, swivel to the right
   //If right has lost the line, swivel to the left
   //If center is on the line, go forward
   long noOfRecords = 0;
   long totalValueCenter += analogRead(LINE_FOLLOWING_B);
+
+  unsigned long averageValue = totalValueCenter / noOfRecords;
+
+  if(averageValue < 800) {
+    currentLeftSpeed += 5;
+    currentRightSpeed = currentRightSpeed;
+  }
+  else if(averageValue > 800) {
+    
+  }
+
+
+
   
   if (foundLine) {
     //Serial.println("in the foundLine loop ---"+(String)valueCenter);
